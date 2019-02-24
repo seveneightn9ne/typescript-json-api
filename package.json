@@ -1,0 +1,35 @@
+{
+    "name": "typescript-json-api",
+    "version": "1.0.6",
+    "description": "type safe JSON API",
+    "dependencies": {
+        "express": "^4.16.4",
+        "lodash": "^4.17.11"
+    },
+    "devDependencies": {
+        "@types/express": "^4.16.1",
+        "@types/lodash": "^4.14.121",
+        "awesome-typescript-loader": "^5.2.0",
+        "source-map-loader": "^0.2.4",
+        "tslint": "^5.12.1",
+        "tslint-eslint-rules": "^5.4.0",
+        "typescript": "^3.3.3333",
+        "typescript-tslint-plugin": "^0.3.1"
+    },
+    "main": "dist/index.js",
+    "typings": "dist/index",
+    "files": [
+        "dist/"
+    ],
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/seveneightn9ne/typescript-json-api.git"
+    },
+    "author": "Jess Kenney",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/seveneightn9ne/typescript-json-api/issues"
+    },
+    "homepage": "https://github.com/seveneightn9ne/typescript-json-api#readme"
+}
