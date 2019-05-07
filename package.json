@@ -1,6 +1,6 @@
 {
     "name": "typescript-json-api",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "description": "type safe JSON API",
     "dependencies": {
         "express": "^4.16.4",
