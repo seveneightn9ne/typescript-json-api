@@ -22,12 +22,12 @@ export async function apiFetch<Request extends object, Response extends object>(
         return null as Response;
     }
     if (result.status == 204) {
-        throw new Error("Received a 204 but required a response for " + options.api.path);
+        throw new APIError(result.status, "Received a 204 but required a response for " + options.api.path);
     }
     if (result.status == 401) {
         if (onReauth) {
             onReauth();
-            throw new Error(`Reauth required`);
+            throw new APIError(result.status, `Reauth required`);
         }
     }
     if (result.status != 200) {
@@ -35,17 +35,29 @@ export async function apiFetch<Request extends object, Response extends object>(
         try {
             r = await result.json();
         } catch {
-            throw new Error(`API error ${result.status}`);
+            throw new APIError(result.status);
         }
         if (r.error) {
-            throw new Error(`API error ${result.status}: ${r.error}`);
+            throw new APIError(result.status, r.error);
         } else {
-            throw new Error(`API error ${result.status}`);
+            throw new APIError(result.status);
         }
     }
     if (options.api.responseSchema == emptySchema) {
-        throw new Error(`Unexpected response for ${options.api.path}`);
+        throw new APIError(result.status, `Unexpected response for ${options.api.path}`);
     }
     const t = await result.text();
     return options.api.reviveResponse(t);
+}
+
+class APIError extends Error {
+    public readonly status: number;
+    constructor(status: number, message?: string){
+        let fullMessage = `API error: ${status}`;
+        if (message) {
+            fullMessage += `: ${message}`;
+        }
+        super(fullMessage);
+        this.status = status;
+    }
 }
