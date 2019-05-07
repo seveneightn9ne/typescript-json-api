@@ -21,7 +21,9 @@
     "files": [
         "dist/"
     ],
-    "scripts": {},
+    "scripts": {
+        "build": "./node_modules/typescript/bin/tsc"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/seveneightn9ne/typescript-json-api.git"
